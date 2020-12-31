@@ -1,22 +1,27 @@
+package scr.shiyan2;
+
 import java.util.*;
 public class SubEquation implements Equation {
    private char operator;
    private int leftOperand;
    private int rightOperand;
    private int standardAnswer;
-
    public int getLeftOperand() {
       return leftOperand;
    }
    public int getRightOperand() {
       return rightOperand;
    }
-
+   public char getOperator() {
+      return operator;
+   }
+   public int getStandardAnswer() {
+      return standardAnswer;
+   }
    @Override
    public int caculateResult() {
       return leftOperand-rightOperand;
    }
-
    //生成在[0,100]区间的操作数
    @Override
    public int getEquOperand() {
@@ -24,12 +29,10 @@ public class SubEquation implements Equation {
       int operand = random.nextInt(UPPER+1);
       return operand;
    }
-
    @Override
    public Boolean checkResultRange(int leftOperand,int rightOperand) {
-      return leftOperand+rightOperand<0;
+      return leftOperand - rightOperand < 0;
    }
-
    //赋值 并 计算参考答案
    @Override
    public void construction(int leftOperand, int rightOperand,char operator) {
@@ -38,7 +41,6 @@ public class SubEquation implements Equation {
       this.rightOperand = rightOperand;
       standardAnswer = caculateResult();
    }
-
    @Override
    public void generateEquation() {
       int left, right;
@@ -48,12 +50,10 @@ public class SubEquation implements Equation {
       }while(checkResultRange(left, right));
       construction(left, right, '-');
    }
-
    @Override
    public String equString() {
       return ""+leftOperand+operator+rightOperand+"=";
    }
-
    @Override
    public String fullString() {
       return ""+leftOperand+operator+rightOperand+"="+standardAnswer;
