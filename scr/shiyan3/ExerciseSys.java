@@ -302,6 +302,5 @@ public class ExerciseSys {
         if(str.equals("是")){
             exerciseSys.laterOpenCSV(type,number,equationNumber);
         }
-
     }
 }

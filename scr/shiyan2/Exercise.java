@@ -12,6 +12,15 @@ public class Exercise {
    public List<Equation> getList() {
       return equsList;
    }
+
+   public String getOperation(int number) {
+      Equation bo = equsList.get(number);
+      return bo.getLeftOperand() + "" + bo.getOperator() + "" + bo.getRightOperand() + "=";
+   }
+
+   public int getResult(int number) {
+      return equsList.get(number).getStandardAnswer();
+   }
    public boolean isEqual(Equation anEqu, Equation equi) {
       return anEqu.getEquOperand() == equi.getEquOperand() &&
               ((anEqu.getLeftOperand() == equi.getLeftOperand() && anEqu.getRightOperand() == equi.getRightOperand())
@@ -96,5 +105,8 @@ public class Exercise {
             System.out.println();
          }
       }
+   }
+   public void clearList() {
+      equsList.clear();
    }
 }
