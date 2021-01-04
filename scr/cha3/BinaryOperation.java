@@ -6,7 +6,7 @@ package scr.cha3;
 import java.io.Serializable;
 import java.util.Random;
 
-public abstract class BinaryOperation_3_2 implements Serializable{
+public abstract class BinaryOperation implements Serializable{
 	private static final long serialVersionUID = -47405034845094801L;
 	static final int UPPER = 100;
 	static final int LOWER = 0;
@@ -63,7 +63,7 @@ public abstract class BinaryOperation_3_2 implements Serializable{
 	public char getOperator(){return operator;}
 	public int getResult(){return value;}
 
-	public boolean equals (BinaryOperation_3_2 anOperation) {  // 要使用 getOperator()
+	public boolean equals (BinaryOperation anOperation) {  // 要使用 getOperator()
 		return 	left_operand == anOperation.getLeftOperand() &
 				right_operand == anOperation.getRightOperand() &
 				operator == anOperation.getOperator();			

@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.*;
 
 @SuppressWarnings("unused")
-public class Exercise_3_2_ch7 implements Serializable{
+public class Exercise implements Serializable{
 	private static final long serialVersionUID = -1622536020144679558L;
 	class Answers implements Serializable{
 		private static final long serialVersionUID = -7833709422448085208L;
@@ -24,7 +24,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 			correct = cr;
 		}
 	}
-	private ArrayList<BinaryOperation_3_2> operationList = new ArrayList<BinaryOperation_3_2>();
+	private ArrayList<BinaryOperation> operationList = new ArrayList<BinaryOperation>();
 //	private List <String> answers = new ArrayList<>(); //第7章增加：用户填写的所有题目的答案
 	private List <Answers> answers = new ArrayList<>(); //第7章增加：用户填写的所有题目的答案
 	private int current=0; // only used for iterator
@@ -33,7 +33,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		return currentType;
 	}
 	public void setAnswer(int index, String ans){
-		BinaryOperation_3_2 op;
+		BinaryOperation op;
 		op = operationList.get(index);
 		String result = String.valueOf(op.getResult());
 		String tans = ans.trim();
@@ -60,7 +60,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		return answers.get(index).correct;
 	}
 	
-	private BinaryOperation_3_2 generateOperation(){ 
+	private BinaryOperation generateOperation(){
 		Random random = new Random();
 		int opValue = random.nextInt(2);
 		if (opValue == 1){ 
@@ -80,12 +80,12 @@ public class Exercise_3_2_ch7 implements Serializable{
 			throw new ExerciseIOException("存储对象失败");
 		}		
 	}
-	public static Exercise_3_2_ch7 loadObject(String filename) throws ExerciseIOException{  //串行化载入对象
-		Exercise_3_2_ch7 exercise = null;
+	public static Exercise loadObject(String filename) throws ExerciseIOException{  //串行化载入对象
+		Exercise exercise = null;
 		try{
 			FileInputStream fis = new FileInputStream(filename);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			exercise = (Exercise_3_2_ch7)ois.readObject();
+			exercise = (Exercise)ois.readObject();
 			ois.close();
 			fis.close();
 		}catch(Exception e){
@@ -108,7 +108,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}
 	}
 	public void generateAdditionExercise( int operationCount){
-		BinaryOperation_3_2 anOperation;
+		BinaryOperation anOperation;
 /*
  * 根据第7章内容添加部分代码
  */		setCurrentType(ExerciseType.ADD_ONLY); //设置题目类型
@@ -124,7 +124,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}
 	}
 	public void generateBinaryExercise(int operationCount){
-		BinaryOperation_3_2 anOperation;
+		BinaryOperation anOperation;
 		/*
 		 * 根据第7章内容添加部分代码
 		 */
@@ -140,7 +140,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}
 	}
 	public void generateSubstractExercise(int operationCount){
-		BinaryOperation_3_2 anOperation;
+		BinaryOperation anOperation;
 		/*
 		 * 根据第7章内容添加部分代码
 		 */
@@ -156,10 +156,10 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}
 	}
 	// --- 2015-8-4: begin
-	public void add(BinaryOperation_3_2 anOperation){
+	public void add(BinaryOperation anOperation){
 		operationList.add(anOperation);
 	}
-	public boolean contains(BinaryOperation_3_2 anOperation){
+	public boolean contains(BinaryOperation anOperation){
 		return operationList.contains(anOperation);
 	}
 	public int length(){
@@ -170,7 +170,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 		File wfile = new File("eq2.txt");
 		try{
 			Writer out = new FileWriter(wfile, true);
-			for (BinaryOperation_3_2 op: operationList){
+			for (BinaryOperation op: operationList){
 				out.write(op.toString()+",");
 			}
 			out.flush();
@@ -183,7 +183,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 	public void writeCSVExercise(File aFile){
 		try{
 			Writer out = new FileWriter(aFile, true);
-			for (BinaryOperation_3_2 op: operationList){
+			for (BinaryOperation op: operationList){
 				out.write(op.toString()+",");
 			}
 			out.flush();
@@ -194,10 +194,10 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}
 	}
 	// read in a file each  as "3+5", and convert to Operation， add in Exercise
-	public Exercise_3_2_ch7 readCSVExercise(){
-		Exercise_3_2_ch7 exercise = new Exercise_3_2_ch7();
+	public Exercise readCSVExercise(){
+		Exercise exercise = new Exercise();
 		String eqString;
-		BinaryOperation_3_2 op;
+		BinaryOperation op;
 		Scanner sc = null;
 		File rfile = new File("eq2.txt");
 		try{
@@ -217,10 +217,10 @@ public class Exercise_3_2_ch7 implements Serializable{
 		
 		return exercise;
 	}
-	public Exercise_3_2_ch7 readCSVExercise(File aFile){
-		Exercise_3_2_ch7 exercise = new Exercise_3_2_ch7();
+	public Exercise readCSVExercise(File aFile){
+		Exercise exercise = new Exercise();
 		String eqString;
-		BinaryOperation_3_2 op;
+		BinaryOperation op;
 		try{
 			Scanner sc = new Scanner(aFile);
         	sc.useDelimiter(",");
@@ -245,20 +245,20 @@ public class Exercise_3_2_ch7 implements Serializable{
 	public boolean hasNext(){ 		// 若有元素返回true，否则返回false，
 		return current <= operationList.size()-1;
 	}
-	public BinaryOperation_3_2 next(){		// 若有元素返回当前元素，移动到一个
+	public BinaryOperation next(){		// 若有元素返回当前元素，移动到一个
 		return operationList.get(current++);
 	}
 	public void printCurrent(){
 		System.out.println("current="+current);
 	}
 	//根据第7章的需求新添加的一种获取元素的方法
-	public BinaryOperation_3_2 getOperation(int index){
+	public BinaryOperation getOperation(int index){
 		if(index < operationList.size()) return operationList.get(index);
 		else return null;
 	}
 	// for test
 	public void all(){
-		for (BinaryOperation_3_2 op:operationList){
+		for (BinaryOperation op:operationList){
 			System.out.println(op.asString());
 		}
 	}
@@ -266,7 +266,7 @@ public class Exercise_3_2_ch7 implements Serializable{
 	public void writeResults(File aFile){
 		try{
 			Writer out = new FileWriter(aFile, true);
-			for (BinaryOperation_3_2 op: operationList){
+			for (BinaryOperation op: operationList){
 				out.write(op.getResult()+",");
 			}
 			out.flush();
@@ -277,13 +277,13 @@ public class Exercise_3_2_ch7 implements Serializable{
 		}		
 	}
 	// 方式2：使用ArrayList自带的Iterator,这像是一个适配器模式！
-	public Iterator<BinaryOperation_3_2> iterator(){
+	public Iterator<BinaryOperation> iterator(){
 		return operationList.iterator();
 	}
 	/*
 	public void generateAdditionExerciseFromBase(int operationCount){
 		OperationBase base = new OperationBase();
-		BinaryOperation_3_2 anOperation;
+		BinaryOperation anOperation;
 		while (operationCount > 0 ){
 			do {anOperation = new AdditionOperation();
 			}while (operationList.contains(anOperation));

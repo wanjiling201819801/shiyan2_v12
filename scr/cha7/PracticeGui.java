@@ -22,7 +22,7 @@ public class PracticeGui extends JFrame {
 	private JTextField [] tfAns;
 	private JTextArea taStat;
 	
-	private Exercise_3_2_ch7 exercises;
+	private Exercise exercises;
 	private int correctAmount;
 	private int wrongAmount;
 	private float correctRatio;
@@ -41,7 +41,7 @@ public class PracticeGui extends JFrame {
 		});
 	}
 	private void initExerciseComponets(){
-		exercises = new Exercise_3_2_ch7();
+		exercises = new Exercise();
 		exercises.generateAdditionExercise(OP_AMOUNT);
 		
 		tfOp = new JTextField[OP_AMOUNT];
@@ -65,7 +65,7 @@ public class PracticeGui extends JFrame {
 		}
 	}
 	private void updateExerciseComponets(){
-		BinaryOperation_3_2 op;
+		BinaryOperation op;
 		for(int i=0; i<OP_AMOUNT; i++){
 			op = exercises.getOperation(i);
 			tfOp[i].setText(op.asString());
@@ -75,7 +75,7 @@ public class PracticeGui extends JFrame {
 		taStat.setText("统计信息：\n总题数："+OP_AMOUNT+"\t正确题数：\t错误题数：\n\t正确率：\t错误率：");
 	}
 	private void judge(){
-		BinaryOperation_3_2 op;
+		BinaryOperation op;
 		correctAmount = wrongAmount = 0;
 		for(int i=0; i<OP_AMOUNT; i++){
 			op = exercises.getOperation(i);

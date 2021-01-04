@@ -1,6 +1,6 @@
 package scr.cha3;
 
-public class SubstractOperation extends BinaryOperation_3_2 {	
+public class SubstractOperation extends BinaryOperation {
 	public SubstractOperation() {	
 		generateBinaryOperation('-');		
 	}	

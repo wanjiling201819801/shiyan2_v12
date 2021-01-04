@@ -1,7 +1,7 @@
 package scr.cha3;
 //
 @SuppressWarnings("serial")
-public class AdditionOperation extends BinaryOperation_3_2 {
+public class AdditionOperation extends BinaryOperation {
 	public AdditionOperation() {	
 		generateBinaryOperation('+');		
 	}

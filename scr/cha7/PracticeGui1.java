@@ -1,8 +1,8 @@
 package scr.cha7;
 
-import scr.cha3.BinaryOperation_3_2;
+import scr.cha3.BinaryOperation;
 import scr.cha3.ExerciseIOException;
-import scr.cha3.Exercise_3_2_ch7;
+import scr.cha3.Exercise;
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class PracticeGui1 extends JFrame {
     private JTextField [] tfOp; //显示的算式组件数组
     private JTextField [] tfAns; //显示的答案组件数组
     private JLabel labelStatus; //状态标签
-    private Exercise_3_2_ch7 exercise;
+    private Exercise exercise;
     private boolean submitted;
     private JTextArea taStat;
 
@@ -207,7 +207,7 @@ public class PracticeGui1 extends JFrame {
     }
     private void initComponets(){
         this.submitted = false;
-        exercise = new Exercise_3_2_ch7();
+        exercise = new Exercise();
         exercise.generateAdditionExercise(OP_AMOUNT);
 
         tfOp = new JTextField[OP_AMOUNT];
@@ -232,7 +232,7 @@ public class PracticeGui1 extends JFrame {
     }
 
     private void updateComponets(){
-        BinaryOperation_3_2 op;
+        BinaryOperation op;
         for(int i=0; i<OP_AMOUNT; i++){
             op = exercise.getOperation(i);
             tfOp[i].setText(op.asString());
